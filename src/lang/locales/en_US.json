@@ -1,5 +1,6 @@
 {
-	"home": "Home",
+	"sidenav.home": "Home",
+	"sidenav.clients": "Clients",
 	
 	"sidenav.dashboard": "Dashboard",
 	"sidenav.dashboard.default": "Default",

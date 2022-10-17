@@ -5,7 +5,7 @@ const dashBoardNavTree = [
   {
     key: "home",
     path: `${APP_PREFIX_PATH}/home`,
-    title: "home",
+    title: "sidenav.home",
     icon: DashboardOutlined,
     breadcrumb: false,
     submenu: [],
@@ -13,7 +13,7 @@ const dashBoardNavTree = [
   {
     key: "clients",
     path: `${APP_PREFIX_PATH}/clients`,
-    title: "Clients",
+    title: "sidenav.clients",
     icon: TeamOutlined,
     breadcrumb: false,
     submenu: [],
