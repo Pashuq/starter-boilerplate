@@ -1,17 +1,14 @@
 import React from "react";
 import { Card, Table, Popover, Tag, Tooltip, message, Button } from "antd";
 import AvatarStatus from "components/shared-components/AvatarStatus";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-function UserListF({ users }) {
+function ClientsList({ users }) {
   const usersLimit = 10;
 
-  const content = (
-    <div>
-      <p>Content</p>
-      <p>Content</p>
-    </div>
-  );
+  const history = useHistory();
+
+  console.log(history);
 
   const tableColumns = [
     {
@@ -49,15 +46,17 @@ function UserListF({ users }) {
     {
       title: "Phone",
       dataIndex: "phone",
-      render: (_, record) => <a tel={record?.phone}>{record?.phone}</a>,
+      render: (_, record) => (
+        <a href={`tel:${record?.phone}`}>{record?.phone}</a>
+      ),
     },
     {
       title: null,
       dataIndex: null,
       render: (_, record) => (
-        <Link to="/">
-          <Button>Edit profile</Button>
-        </Link>
+        <Button onClick={() => history.push(`/app/clients/${record.id}`)}>
+          Edit profile
+        </Button>
       ),
     },
   ];
@@ -77,4 +76,4 @@ function UserListF({ users }) {
   );
 }
 
-export default UserListF;
+export default ClientsList;

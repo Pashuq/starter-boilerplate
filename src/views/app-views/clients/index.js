@@ -1,7 +1,6 @@
 import PageHeader from "components/layout-components/PageHeader";
 import React, { useEffect, useState } from "react";
-import UserList from "../pages/user-list";
-import UserListF from "../pages/user-listf";
+import ClientsList from "./clients-list";
 
 const Clients = () => {
   const [users, setUsers] = useState([]);
@@ -24,7 +23,11 @@ const Clients = () => {
     <div>
       <PageHeader title={"sidenav.clients"} display={true} />
 
-      <UserListF users={users} userProfileVisible={false} selectedUser={null} />
+      <ClientsList
+        users={users}
+        userProfileVisible={false}
+        selectedUser={null}
+      />
     </div>
   );
 };
