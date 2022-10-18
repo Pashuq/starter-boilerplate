@@ -54,7 +54,9 @@ function ClientsList({ users }) {
       title: null,
       dataIndex: null,
       render: (_, record) => (
-        <Button onClick={() => history.push(`/app/clients/${record.id}`)}>
+        <Button
+          onClick={() => history.push(`/app/clients/profile${record.id}`)}
+        >
           Edit profile
         </Button>
       ),
