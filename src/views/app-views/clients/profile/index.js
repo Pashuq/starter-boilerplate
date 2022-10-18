@@ -22,7 +22,7 @@ function Client() {
   };
 
   const ClientProfile = () => {
-    return <EditProfile></EditProfile>;
+    return <EditProfile id={params.id} />;
   };
 
   return (
