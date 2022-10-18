@@ -1,14 +1,41 @@
-import PageHeader from "components/layout-components/PageHeader";
+import { Menu } from "antd";
+import MenuItem from "antd/lib/menu/MenuItem";
+import InnerAppLayout from "layouts/inner-app-layout";
 import React from "react";
+import { UserOutlined } from "@ant-design/icons";
 
 import { useParams } from "react-router-dom";
+import EditProfile from "./setting/EditProfile";
 
 function Client() {
   const params = useParams();
+
+  const ClientSideMenu = () => {
+    return (
+      <Menu mode="inline" defaultSelectedKeys="profile">
+        <Menu.Item key="profile">
+          <UserOutlined />
+          <span>Edit profile</span>
+        </Menu.Item>
+      </Menu>
+    );
+  };
+
+  const ClientProfile = () => {
+    return <EditProfile></EditProfile>;
+  };
+
   return (
-    <div>
-      <p>{params.id}</p>
-    </div>
+    // <p>{params.id}</p>
+
+    //
+    //
+
+    <InnerAppLayout
+      sideContentWidth={320}
+      sideContent={<ClientSideMenu />}
+      mainContent={<ClientProfile />}
+    />
   );
 }
 
