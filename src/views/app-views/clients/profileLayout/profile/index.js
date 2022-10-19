@@ -5,14 +5,14 @@ import { ROW_GUTTER } from "constants/ThemeConstant";
 import Flex from "components/shared-components/Flex";
 import Loading from "components/shared-components/Loading";
 import { useFetching } from "hooks/useFetching";
-import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ClientsService from "API/ClientsService";
 
-const EditProfileNew = ({ id }) => {
+const EditProfile = ({ id }) => {
   const [clientInfo, setClientInfo] = useState({});
-  //   const params = useParams();
+  const history = useHistory();
 
-  const [fetchClient, isClientLoading, error] = useFetching(useFetchingCb);
+  const [fetchClient, isClientLoading] = useFetching(useFetchingCb);
 
   async function useFetchingCb() {
     const client = await ClientsService.getUserById(id);
@@ -24,6 +24,7 @@ const EditProfileNew = ({ id }) => {
     return () => {
       setClientInfo({});
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onFinish = () => {
@@ -31,6 +32,7 @@ const EditProfileNew = ({ id }) => {
 
     setTimeout(() => {
       isClientLoading.setIsLoading(false);
+      history.push("/app/clients");
     }, 1000);
   };
 
@@ -136,4 +138,4 @@ const EditProfileNew = ({ id }) => {
   return <>{isClientLoading.isLoading ? <Loading /> : <EditProfileLayout />}</>;
 };
 
-export default EditProfileNew;
+export default EditProfile;

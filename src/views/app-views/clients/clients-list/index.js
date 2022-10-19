@@ -1,14 +1,12 @@
 import React from "react";
-import { Card, Table, Popover, Tag, Tooltip, message, Button } from "antd";
+import { Card, Table, Button } from "antd";
 import AvatarStatus from "components/shared-components/AvatarStatus";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function ClientsList({ users }) {
   const usersLimit = 10;
 
   const history = useHistory();
-
-  console.log(history);
 
   const tableColumns = [
     {

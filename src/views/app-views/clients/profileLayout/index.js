@@ -1,12 +1,9 @@
 import { Menu } from "antd";
-import MenuItem from "antd/lib/menu/MenuItem";
 import InnerAppLayout from "layouts/inner-app-layout";
 import React from "react";
 import { UserOutlined } from "@ant-design/icons";
-
 import { useParams } from "react-router-dom";
-import EditProfile from "./setting/EditProfile";
-import EditProfileNew from "./setting/EditProfileNew";
+import EditProfile from "./profile";
 
 function Client() {
   const params = useParams();
@@ -26,7 +23,7 @@ function Client() {
     <InnerAppLayout
       sideContentWidth={320}
       sideContent={<ClientSideMenu />}
-      mainContent={<EditProfileNew id={params.id} />}
+      mainContent={<EditProfile id={params.id} />}
     />
   );
 }
