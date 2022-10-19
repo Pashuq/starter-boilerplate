@@ -39,7 +39,7 @@ const Clients = () => {
     );
   };
 
-  return isClientsLoading ? (
+  return isClientsLoading.isLoading ? (
     <Loading />
   ) : (
     <InnerClientsLayout error={clientsError} />

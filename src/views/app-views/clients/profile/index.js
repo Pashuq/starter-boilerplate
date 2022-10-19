@@ -6,6 +6,7 @@ import { UserOutlined } from "@ant-design/icons";
 
 import { useParams } from "react-router-dom";
 import EditProfile from "./setting/EditProfile";
+import EditProfileNew from "./setting/EditProfileNew";
 
 function Client() {
   const params = useParams();
@@ -21,20 +22,11 @@ function Client() {
     );
   };
 
-  const ClientProfile = () => {
-    return <EditProfile id={params.id} />;
-  };
-
   return (
-    // <p>{params.id}</p>
-
-    //
-    //
-
     <InnerAppLayout
       sideContentWidth={320}
       sideContent={<ClientSideMenu />}
-      mainContent={<ClientProfile />}
+      mainContent={<EditProfileNew id={params.id} />}
     />
   );
 }

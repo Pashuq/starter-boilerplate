@@ -1,25 +1,14 @@
-import React, { Component } from "react";
-import {
-  Form,
-  Avatar,
-  Button,
-  Input,
-  DatePicker,
-  Row,
-  Col,
-  message,
-  Upload,
-} from "antd";
+import React, { Component, useState, useEffect } from "react";
+import { Form, Avatar, Button, Input, Row, Col, message, Upload } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { ROW_GUTTER } from "constants/ThemeConstant";
 import Flex from "components/shared-components/Flex";
 import Loading from "components/shared-components/Loading";
+import { useFetching } from "hooks/useFetching";
+import { useParams } from "react-router-dom";
+import ClientsService from "API/ClientsService";
 
 export class EditProfile extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   avatarEndpoint = "https://www.mocky.io/v2/5cc8019d300000980a055e76";
 
   state = {
@@ -100,7 +89,21 @@ export class EditProfile extends Component {
       avatarUrl,
     } = this.state;
 
-    const NewFFF = () => {
+    const ClientProfile = () => {
+      const [clientInfo, setClientInfo] = useState({});
+      const params = useParams();
+
+      const [fetchClient, isClientLoading, error] = useFetching(useFetchingCb);
+
+      async function useFetchingCb() {
+        const client = await ClientsService.getUserById(params.id);
+        setClientInfo(client);
+      }
+
+      useEffect(() => {
+        fetchClient();
+      }, []);
+
       return (
         <>
           <Loading />
@@ -198,7 +201,7 @@ export class EditProfile extends Component {
       );
     };
 
-    return <NewFFF />;
+    return <ClientProfile />;
   }
 }
 
