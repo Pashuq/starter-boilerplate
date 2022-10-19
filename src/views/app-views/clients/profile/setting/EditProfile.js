@@ -13,6 +13,7 @@ import {
 import { UserOutlined } from "@ant-design/icons";
 import { ROW_GUTTER } from "constants/ThemeConstant";
 import Flex from "components/shared-components/Flex";
+import Loading from "components/shared-components/Loading";
 
 export class EditProfile extends Component {
   constructor(props) {
@@ -102,6 +103,7 @@ export class EditProfile extends Component {
     const NewFFF = () => {
       return (
         <>
+          <Loading />
           <Flex
             alignItems="center"
             mobileFlex={false}

@@ -1,38 +1,48 @@
-import axios from "axios";
 import PageHeader from "components/layout-components/PageHeader";
 import React, { useEffect, useState } from "react";
 import ClientsList from "./clients-list";
-import { API_BASE_URL } from "configs/AppConfig";
 import ClientsService from "API/ClientsService";
+import Loading from "components/shared-components/Loading";
+import { useFetching } from "hooks/useFetching";
 
 const Clients = () => {
   const [users, setUsers] = useState([]);
+  const [fetchClients, isClientsLoading, clientsError] =
+    useFetching(useFetchingCb);
 
-  useEffect(() => {
-    fetchUsersWithAvatar();
-  }, []);
-
-  async function fetchUsersWithAvatar() {
+  async function useFetchingCb() {
     const clients = await ClientsService.getAll();
-    const responseWithAvatar = clients.map((client) => {
+    const clientsWithAvatar = clients.map((client) => {
       return {
         ...client,
         avatar: `/img/avatars/thumb-${client.id}.jpg`,
       };
     });
-    setUsers(responseWithAvatar);
+    setUsers(clientsWithAvatar);
   }
 
-  return (
-    <div>
-      <PageHeader title={"sidenav.clients"} display={true} />
+  useEffect(() => {
+    fetchClients();
+  }, []);
 
-      <ClientsList
-        users={users}
-        userProfileVisible={false}
-        selectedUser={null}
-      />
-    </div>
+  const InnerClientsLayout = ({ error }) => {
+    return (
+      <>
+        <PageHeader title={"sidenav.clients"} display={true} />
+        {error && <p>{error}</p>}
+        <ClientsList
+          users={users}
+          userProfileVisible={false}
+          selectedUser={null}
+        />
+      </>
+    );
+  };
+
+  return isClientsLoading ? (
+    <Loading />
+  ) : (
+    <InnerClientsLayout error={clientsError} />
   );
 };
 
